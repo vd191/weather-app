@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Weather App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div>
+        <h1 id="city-title" class="city-title">Mel</h1>
+      </div>
+
+      <div class="weather-info">
+        <div class="arrow" onclick="previousCity()">
+          <img class="arrow-img"
+            src="https://bit.ly/webApp_Assets_leftArrow" />
+        </div>
+
+        <div>
+          <img id="today-weather-img"  style="max-width: 170px; max-height: 170px"
+            src="https://bit.ly/webApp_Assets_sunny" />
+
+        </div>
+
+        <div class="arrow" onclick="nextCity()">
+          <img class="arrow-img"
+            src="https://bit.ly/webApp_Assets_rightArrow"  />
+        </div>
+
+      </div>
+
+      <h1 id="temp"> 23  </h1> 
+      <div class="temp">
+        <div> <h4 id="temp-2"> 20 &#176</h4> </div>
+        <div> <h4 id="vis"> 25 &#176</h4> </div>
+      </div>
+
+      <h2 id="weather-description" > Weather Description </h2>
+
+      <hr style="width: 80%; opacity: 0.3">
+
+      <div class="five-day-forecast">
+        <div>
+          <div><h4 id="day1">Wed</h4></div>
+          <div style="height: 64px"><img id="img1" style="max-width: 60px; max-height: 60px"
+              src="https://bit.ly/webApp_Assets_sunny" /></div>
+          <div><h4 id="temp1" >25/20</h4></div>
+        </div>
+
+        <div>
+          <div><h4 id="day2">Thu</h4></div>
+          <div style="height: 64px"><img id="img2" style="max-width: 60px; max-height: 60px"
+              src="https://bit.ly/webApp_Assets_sunny" /></div>
+          <div><h4 id="temp2" >25/20</h4></div>
+        </div>
+
+        <div>
+          <div><h4 id="day3">Fri</h4></div>
+          <div  style="height: 64px"><img id="img3" style="max-width: 60px; max-height: 60px"
+              src="https://bit.ly/webApp_Assets_sunny" /></div>
+          <div><h4 id="temp3">25/20</h4></div>
+        </div>
+
+        <div>
+          <div><h4 id="day4">Sat</h4></div>
+          <div  style="height: 64px"><img id="img4" style="max-width: 60px; max-height: 60px"
+              src="https://bit.ly/webApp_Assets_sunny" /></div>
+          <div><h4 id="temp4">25/20</h4></div>
+        </div>
+
+        <div>
+          <div><h4 id="day5">Sun</h4></div>
+          <div  style="height: 64px"><img id="img5" style="max-width: 60px; max-height: 60px"
+              src="https://bit.ly/webApp_Assets_sunny" /></div>
+          <div><h4 id="temp5">25/20</h4></div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+  </body>
+
+</html>

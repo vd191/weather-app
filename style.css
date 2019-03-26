@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+html, body {
+  height: 100%;
+}
+.wrapper {
+  font-family: 'Roboto', sans-serif;
+  background-image: url('https://bit.ly/webApp_Assets_background');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #FFF;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.weather-info {
+  display: grid; 
+  grid-template-columns: 1fr 4fr 1fr; 
+  width: 50%;
+  margin: 0 auto; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-img {
+  width: 50px; 
+  height: 50px;
+}
+
+.five-day-forecast {
+  margin: 0 auto;
+  width: 80%; 
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+
+}
+
+.temp {
+  margin: 0 auto;
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-evenly; 
+  width: 10%; 
+  
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    height: auto;
+  }
+
+  .five-day-forecast {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .weather-info {
+    width: 95%;
+  }
+
+  .temp{
+    width: 25%; 
+  }
+}
