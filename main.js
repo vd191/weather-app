@@ -1,32 +1,33 @@
-
 var CITIES = [
-  { cityName: 'Sydney', lat: '-33.8688', lon: '151.2093' },
-  { cityName: 'Brisbane', lat: '-27.4698', lon: '153.0251' },
-  { cityName: 'Melbourne', lat: '-37.8136', lon: '144.9631' },
-  { cityName: 'Snowy Mountains', lat: '-36.5000', lon: '148.3333' },
-
-]
+  { cityName: "Sydney", lat: "-33.8688", lon: "151.2093" },
+  { cityName: "Brisbane", lat: "-27.4698", lon: "153.0251" },
+  { cityName: "Melbourne", lat: "-37.8136", lon: "144.9631" },
+  { cityName: "Snowy Mountains", lat: "-36.5000", lon: "148.3333" },
+];
 
 var currentCity = "";
 
 window.onload = function () {
   AjaxMakeGetRequest(CITIES[0]);
-}
+};
 
 function AjaxMakeGetRequest(city) {
-
   if (city != null) {
     currentCity = city;
     var lat = city.lat;
     var lon = city.lon;
 
     var prams = "?lat=" + lat + "&lon=" + lon;
-    var url = "https://weatherbit-v1-mashape.p.mashape.com/forecast/3hourly" + prams;
+    var url =
+      "https://weatherbit-v1-mashape.p.mashape.com/forecast/3hourly" + prams;
 
     var xhttp = new XMLHttpRequest();
 
     xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("X-Mashape-Key", "wSo0LRcHZMmsh4rXshasAImNK7Ulp19zkGQjsnUjeMXsnpyilC");
+    xhttp.setRequestHeader(
+      "X-Mashape-Key",
+      "wSo0LRcHZMmsh4rXshasAImNK7Ulp19zkGQjsnUjeMXsnpyilC"
+    );
 
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -36,15 +37,10 @@ function AjaxMakeGetRequest(city) {
         updateContent(data);
         handleRemainDay(data);
       }
-    }
-
+    };
     xhttp.send();
-
   }
-
-
 }
-
 
 function handleGetDate(data) {
   var date = parseInt(data[0].datetime.slice(8, 10));
@@ -52,7 +48,7 @@ function handleGetDate(data) {
 }
 
 function handleGetDay(d) {
-  var day = '';
+  var day = "";
   switch (d) {
     case 0:
       day = "Sun";
@@ -76,7 +72,6 @@ function handleGetDay(d) {
       day = "Sat";
       break;
   }
-
   return day;
 }
 
@@ -87,8 +82,8 @@ function updateWeatherImg(data) {
   var sunnyImg = "https://bit.ly/webApp_Assets_sunny";
   var thunderStorm = "https://bit.ly/webApp_Assets_thunderStorm";
 
-  var todayWeatherImg = document.getElementById('today-weather-img');
-  var weatherDescription = document.getElementById('weather-description');
+  var todayWeatherImg = document.getElementById("today-weather-img");
+  var weatherDescription = document.getElementById("weather-description");
 
   var des = data.data[0].weather.description.toLowerCase();
   switch (true) {
@@ -117,21 +112,18 @@ function updateWeatherImg(data) {
       weatherDescription.innerHTML = data.data[0].weather.description;
       break;
   }
-
 }
 
 function updateContent(data) {
-
-  var cityName = document.getElementById('city-title');
-  var temp = document.getElementById('temp');
-  var temp2 = document.getElementById('temp-2');
-  var vis = document.getElementById('vis');
-
+  var cityName = document.getElementById("city-title");
+  var temp = document.getElementById("temp");
+  var temp2 = document.getElementById("temp-2");
+  var vis = document.getElementById("vis");
 
   var date = handleGetDate(data.data);
 
   var date = new Date();
-  var d = date.getDay() // 1 ,2, 3
+  var d = date.getDay(); // 1 ,2, 3
 
   var day = handleGetDay(d); // Mon , Tue
 
@@ -141,7 +133,6 @@ function updateContent(data) {
   vis.innerHTML = data.data[0].vis + "&#176 ";
 
   updateWeatherImg(data);
-
 }
 
 function nextCity() {
@@ -149,7 +140,6 @@ function nextCity() {
   if (i < CITIES.length) {
     AjaxMakeGetRequest(CITIES[i + 1]);
   }
-
 }
 
 function previousCity() {
@@ -157,26 +147,24 @@ function previousCity() {
   AjaxMakeGetRequest(CITIES[i - 1]);
 }
 
-
 function handleRemainDay(data) {
-
   var remainingData = [];
   var nextFiveDayData = [];
 
-
   var fullDay = [0, 1, 2, 3, 4, 5, 6];
   var date = new Date();
-  var d = date.getDay() // 1 ,2, 3
+  var d = date.getDay(); // 1 ,2, 3
 
-  var remainingDay = fullDay.filter(day => day != d); // [1, 3,4,5,6]
+  var remainingDay = fullDay.filter((day) => day != d); // [1, 3,4,5,6]
 
   var nextFiveDay = [];
 
   var today = handleGetDate(data.data); // 26
 
-
   for (i = 1; i < 6; i++) {
-    var newArr = data.data.filter(date => date.datetime.slice(8, 10) == today + i);
+    var newArr = data.data.filter(
+      (date) => date.datetime.slice(8, 10) == today + i
+    );
     nextFiveDayData.push(newArr[0]);
   }
   console.log(nextFiveDayData);
@@ -189,23 +177,23 @@ function handleRemainDay(data) {
 
   var weatherImgs = nextFiveDayWeatherImg(nextFiveDayData);
 
-  var day1 = document.getElementById('day1');
-  var day2 = document.getElementById('day2');
-  var day3 = document.getElementById('day3');
-  var day4 = document.getElementById('day4');
-  var day5 = document.getElementById('day5');
+  var day1 = document.getElementById("day1");
+  var day2 = document.getElementById("day2");
+  var day3 = document.getElementById("day3");
+  var day4 = document.getElementById("day4");
+  var day5 = document.getElementById("day5");
 
-  var temp1 = document.getElementById('temp1');
-  var temp2 = document.getElementById('temp2');
-  var temp3 = document.getElementById('temp3');
-  var temp4 = document.getElementById('temp4');
-  var temp5 = document.getElementById('temp5');
+  var temp1 = document.getElementById("temp1");
+  var temp2 = document.getElementById("temp2");
+  var temp3 = document.getElementById("temp3");
+  var temp4 = document.getElementById("temp4");
+  var temp5 = document.getElementById("temp5");
 
-  var img1 = document.getElementById('img1');
-  var img2 = document.getElementById('img2');
-  var img3 = document.getElementById('img3');
-  var img4 = document.getElementById('img4');
-  var img5 = document.getElementById('img5');
+  var img1 = document.getElementById("img1");
+  var img2 = document.getElementById("img2");
+  var img3 = document.getElementById("img3");
+  var img4 = document.getElementById("img4");
+  var img5 = document.getElementById("img5");
 
   day1.innerHTML = nextFiveDay[0];
   day2.innerHTML = nextFiveDay[1];
@@ -225,13 +213,7 @@ function handleRemainDay(data) {
   img3.src = weatherImgs[2];
   img4.src = weatherImgs[3];
   img5.src = weatherImgs[4];
-
-
-
-
 }
-
-
 
 function nextFiveDayWeatherImg(data) {
   var cloudyImg = "https://bit.ly/webApp_Assets_cloudy";
@@ -266,7 +248,5 @@ function nextFiveDayWeatherImg(data) {
         break;
     }
   }
-
-
   return weatherImgs;
 }
